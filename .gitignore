@@ -1,0 +1,41 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.eclipse/
+*.launch
+
+# NetBeans
+.nbproject/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+log4j2.xml
+
+# Run directory (Minecraft dev environment)
+run/
+
+# AI tooling
+.cursor/
+.clinerules
+.cursorrules
+.claude/
+
+# Project-specific
+bin/
+maries_lib_banner.png
+mod_icon.png

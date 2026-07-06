@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://maven.neoforged.net/releases' }
+    }
+}
+
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
+}
+
+rootProject.name = 'MariesCompat'
+
+def localMarieLibDir = file('../Marieslib')
+gradle.ext.localMarieLibPresent = new File(localMarieLibDir, 'build.gradle').exists()
+
+if (gradle.ext.localMarieLibPresent) {
+    includeBuild('../Marieslib') {
+        dependencySubstitution {
+            substitute module('dev.marie.MariesLib:marieslib') using project(':')
+        }
+    }
+}
