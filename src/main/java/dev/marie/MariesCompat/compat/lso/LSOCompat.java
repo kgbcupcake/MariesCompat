@@ -1,9 +1,9 @@
 package dev.marie.MariesCompat.compat.lso;
 
 import dev.marie.MariesCompat.config.MariesCompatModuleCache;
-import dev.marie.framework.api.MarieAPI;
-import dev.marie.framework.api.MarieEvents;
-import dev.marie.framework.api.ValueDefinition;
+import dev.marie.framework.api.marieapi.MarieAPI;
+import dev.marie.framework.api.marie.MarieEvents;
+import dev.marie.framework.api.value.ValueDefinition;
 import dev.marie.framework.api.registry.ValueRegistry;
 import dev.marie.framework.core.MarieCore;
 import net.minecraft.core.Holder;
