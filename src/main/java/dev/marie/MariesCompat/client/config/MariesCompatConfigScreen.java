@@ -1,5 +1,6 @@
 package dev.marie.MariesCompat.client.config;
 
+import dev.marie.MariesCompat.compat.saturation.SaturationDisplayMode;
 import dev.marie.MariesCompat.config.MariesCompatConfig;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
@@ -65,6 +66,45 @@ public final class MariesCompatConfigScreen {
                 .setSaveConsumer(config::setEnableLSOThirstSaturation)
                 .build());
 
+        ConfigCategory saturation = builder.getOrCreateCategory(Component.literal("Saturation Tweaks"));
+        saturation.addEntry(eb.startBooleanToggle(Component.literal("Enable Saturation Tweaks"), config.enableSaturationTweaks())
+                .setDefaultValue(false)
+                .setTooltip(Component.literal("Master toggle. Off by default so installing this mod never changes hunger mechanics unless you opt in."))
+                .setSaveConsumer(config::setEnableSaturationTweaks)
+                .build());
+        saturation.addEntry(eb.startDoubleField(Component.literal("Max Exhaustion"), config.maxExhaustion())
+                .setDefaultValue(4.0)
+                .setMin(0.1)
+                .setMax(1000.0)
+                .setTooltip(Component.literal("Exhaustion level that must be reached before hunger/saturation drains. Vanilla default is 4.0 — raise it to make food last longer."))
+                .setSaveConsumer(config::setMaxExhaustion)
+                .build());
+        saturation.addEntry(eb.startIntField(Component.literal("Saturation Cap"), config.saturationCap())
+                .setDefaultValue(-1)
+                .setMin(-1)
+                .setTooltip(Component.literal("Maximum saturation level. -1 disables the cap (vanilla behavior)."))
+                .setSaveConsumer(config::setSaturationCap)
+                .build());
+        saturation.addEntry(eb.startBooleanToggle(Component.literal("Hunger Limits Saturation"), config.hungerLimitsSaturation())
+                .setDefaultValue(false)
+                .setTooltip(Component.literal("If enabled, saturation can never exceed your current food level."))
+                .setSaveConsumer(config::setHungerLimitsSaturation)
+                .build());
+        saturation.addEntry(eb.startBooleanToggle(Component.literal("Always Can Eat"), config.alwaysCanEat())
+                .setDefaultValue(false)
+                .setTooltip(Component.literal("If enabled, you can always eat regardless of food level."))
+                .setSaveConsumer(config::setAlwaysCanEat)
+                .build());
+        saturation.addEntry(eb.startEnumSelector(Component.literal("Saturation Display"), SaturationDisplayMode.class, config.saturationDisplayMode())
+                .setDefaultValue(SaturationDisplayMode.NEVER)
+                .setTooltip(Component.literal("ALWAYS: always show the raw saturation number. BEYOND_MAX: only show it once saturation exceeds what AppleSkin's hunger-bar overlay can visually represent (20). NEVER: don't show it."))
+                .setSaveConsumer(config::setSaturationDisplayMode)
+                .build());
+        saturation.addEntry(eb.startBooleanToggle(Component.literal("Exhaustion Displayed"), config.exhaustionDisplayed())
+                .setDefaultValue(false)
+                .setTooltip(Component.literal("Shows exhaustion as a percentage of the threshold needed to drain hunger/saturation."))
+                .setSaveConsumer(config::setExhaustionDisplayed)
+                .build());
         builder.setSavingRunnable(MariesCompatConfig::saveNow);
         return builder.build();
     }
