@@ -5,6 +5,7 @@ import dev.marie.MariesCompat.client.config.MariesCompatConfigScreen;
 import dev.marie.MariesCompat.compat.lso.LSOCompat;
 import dev.marie.MariesCompat.compat.peakstamina.PeakStaminaCompat;
 import dev.marie.MariesCompat.compat.spiceoflifeonion.SpiceOfLifeOnionCompat;
+import dev.marie.MariesCompat.compat.saturation.network.SaturationDisplayNetworking;
 import dev.marie.MariesCompat.config.MariesCompatConfig;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -25,6 +26,7 @@ public class MariesCompat {
         MariesCompatConfig.register(modContainer);
         modEventBus.addListener(MariesCompatConfig::onModConfigLoading);
         modEventBus.addListener(MariesCompatConfig::onModConfigReloading);
+        SaturationDisplayNetworking.register(modEventBus);
 
         if (ModList.get().isLoaded("peakstamina")) {
             PeakStaminaCompat.register();

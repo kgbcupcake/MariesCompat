@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.marie.MariesCompat.compat.saturation.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "FoodDataAccessor",
+    "FoodDataExhaustionMixin",
+    "FoodDataTickMixin",
+    "PlayerCanEatMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
